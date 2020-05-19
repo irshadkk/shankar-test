@@ -1,50 +1,46 @@
+
 package com.irshad.test.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "registrations")
-public class Registration {
+@Table(name = "registration")
+public class Registration implements Serializable {
 
-	private long id;
-	private String plateNumber;
+    /**
+     * N
+     */
+    private static final long serialVersionUID = 1L;
+    //
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public Registration() {
+    private boolean expired;
+    private String expiryDate;
 
-	}
+    public Registration() {
+    }
 
-	public Registration(String plateNumber, String lastName, String emailId) {
-		this.plateNumber = plateNumber;
+    public boolean isExpired() {
+        return expired;
+    }
 
-	}
+    public void setExpired(boolean expired) {
+        this.expired = expired;
+    }
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public long getId() {
-		return id;
-	}
+    public String getExpiryDate() {
+        return expiryDate;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
 
-	@Column(name = "plate_number", nullable = false)
-	public String getPlateNumber() {
-		return plateNumber;
-	}
-
-	public void setPlateNumber(String plateNumber) {
-		this.plateNumber = plateNumber;
-	}
-
-	@Override
-	public String toString() {
-		return "Registration [id=" + id + ", plateNumber=" + plateNumber + " ]";
-	}
-
+    public Registration(boolean expired, String expiryDate) {
+        this.expired = expired;
+        this.expiryDate = expiryDate;
+    }
 }

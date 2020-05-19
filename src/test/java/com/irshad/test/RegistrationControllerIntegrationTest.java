@@ -3,7 +3,7 @@ package com.irshad.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import com.irshad.test.model.Registration;
+import com.irshad.test.model.Registrations;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,17 +49,17 @@ public class RegistrationControllerIntegrationTest {
 
 	@Test
 	public void testGetRegistrationById() {
-		Registration registration = restTemplate.getForObject(getRootUrl() + "/reg/1", Registration.class);
-		System.out.println(registration.getPlateNumber());
-		assertNotNull(registration);
+		Registrations registrations = restTemplate.getForObject(getRootUrl() + "/reg/1", Registrations.class);
+		System.out.println(registrations.getPaletNumber());
+		assertNotNull(registrations);
 	}
 
 	@Test
 	public void testCreateRegistration() {
-		Registration registration = new Registration();
-		registration.setPlateNumber("admin");
+		Registrations registrations = new Registrations();
+		registrations.setPaletNumber("admin");
 
-		ResponseEntity<Registration> postResponse = restTemplate.postForEntity(getRootUrl() + "/reg", registration, Registration.class);
+		ResponseEntity<Registrations> postResponse = restTemplate.postForEntity(getRootUrl() + "/reg", registrations, Registrations.class);
 		assertNotNull(postResponse);
 		assertNotNull(postResponse.getBody());
 	}
@@ -67,25 +67,25 @@ public class RegistrationControllerIntegrationTest {
 	@Test
 	public void testUpdateRegistration() {
 		int id = 1;
-		Registration registration = restTemplate.getForObject(getRootUrl() + "/reg/" + id, Registration.class);
-		registration.setPlateNumber("admin1");
+		Registrations registrations = restTemplate.getForObject(getRootUrl() + "/reg/" + id, Registrations.class);
+		registrations.setPaletNumber("admin1");
 
-		restTemplate.put(getRootUrl() + "/reg/" + id, registration);
+		restTemplate.put(getRootUrl() + "/reg/" + id, registrations);
 
-		Registration updatedRegistration = restTemplate.getForObject(getRootUrl() + "/reg/" + id, Registration.class);
-		assertNotNull(updatedRegistration);
+		Registrations updatedRegistrations = restTemplate.getForObject(getRootUrl() + "/reg/" + id, Registrations.class);
+		assertNotNull(updatedRegistrations);
 	}
 
 	@Test
 	public void testDeleteRegistration() {
 		int id = 2;
-		Registration registration = restTemplate.getForObject(getRootUrl() + "/reg/" + id, Registration.class);
-		assertNotNull(registration);
+		Registrations registrations = restTemplate.getForObject(getRootUrl() + "/reg/" + id, Registrations.class);
+		assertNotNull(registrations);
 
 		restTemplate.delete(getRootUrl() + "/reg/" + id);
 
 		try {
-			registration = restTemplate.getForObject(getRootUrl() + "/reg/" + id, Registration.class);
+			registrations = restTemplate.getForObject(getRootUrl() + "/reg/" + id, Registrations.class);
 		} catch (final HttpClientErrorException e) {
 			assertEquals(e.getStatusCode(), HttpStatus.NOT_FOUND);
 		}

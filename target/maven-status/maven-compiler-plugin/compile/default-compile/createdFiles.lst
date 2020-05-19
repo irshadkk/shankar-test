@@ -1,9 +1,14 @@
-com/irshad/test/controller/EmployeeController.class
+com/irshad/test/controller/RegistrationController.class
+com/irshad/test/model/Registrations.class
+com/irshad/test/repository/VehicleRepository.class
+com/irshad/test/exception/ErrorDetails.class
+com/irshad/test/model/Vehicle.class
+com/irshad/test/repository/RegistrationsRepository.class
 com/irshad/test/SpringRestClient.class
 com/irshad/test/model/Insurer.class
 com/irshad/test/exception/ResourceNotFoundException.class
+com/irshad/test/repository/InsurerRepository.class
 com/irshad/test/repository/RegistrationRepository.class
 com/irshad/test/Application.class
-com/irshad/test/exception/ErrorDetails.class
 com/irshad/test/model/Registration.class
 com/irshad/test/exception/GlobalExceptionHandler.class
